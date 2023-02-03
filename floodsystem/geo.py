@@ -23,7 +23,7 @@ def stations_within_radius(stations, centre, r):
   Y = []
   X = stations_by_distance(stations, centre)
   for i in range(len(X)):
-    if X[i][1] < r:
+    if X[i][2] < r:
       Y.append(X[i][0])
   Y = sorted_by_key(Y, 0)
   return Y
