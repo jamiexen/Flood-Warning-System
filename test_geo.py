@@ -7,19 +7,20 @@ def test_distance():
     station_list = build_station_list()
     p = (52.2053, 0.1218)
     X = stations_by_distance(station_list, p)
-    for i in X:
-      assert 0 <= int(X[i][2]) < 1000
+    for i in range(len(X)):
+      assert 0 <= X[i][2] < 1000
 
 def test_station_names():
     """Test all the stations are in the list"""
     station_list = build_station_list()
     p = (52.2053, 0.1218)
     X = stations_by_distance(station_list, p)
-    Y = X[:][0]
     Z = [station.name for station in station_list]
     Z = sorted_by_key(Z, 0)
-    for station in Z:
-        assert station in Y[:][0]
+    X = X[:][0]
+    X = sorted_by_key(X, 0)
+    for station, i in Z, len(Z):
+        assert station in X[i]
     
 def test_sorting():
     """Tests sorting function has worked"""
