@@ -1,7 +1,6 @@
 """Test for geo function"""
 from floodsystem.stationdata import build_station_list
-from floodsystem.geo import stations_by_distance
-from floodsystem.geo import stations_within_radius
+from floodsystem.geo import *
 
 def test_distance():
     """Tests if distances are faesable"""
@@ -9,7 +8,7 @@ def test_distance():
     p = (52.2053, 0.1218)
     X = stations_by_distance(station_list, p)
     for i in X:
-      assert 0 < X[i][1] <1000
+      assert 0 < X[i][2] <1000
 
 def test_station_names():
     """Test all the stations are in the list"""
@@ -19,7 +18,7 @@ def test_station_names():
     Y = X[:][0]
     Z = [station.name for station in station_list]
     for station in Z:
-        assert station in Y
+        assert station in Y[:][0]
     
 def test_sorting():
     """Tests sorting function has worked"""
@@ -27,14 +26,14 @@ def test_sorting():
     p = (52.2053, 0.1218)
     X = stations_by_distance(station_list, p)
     for i in range(len(X)-1):
-        assert X[i][1] >= X[i+1][1]
+        assert X[i][2] >= X[i+1][2]
         
 
 def test_names():
     """tests that all station names are from the original list"""
     stations = build_station_list()
     centre = (52.2053, 0.1218)
-    r = 10
+    r = 10.0
     X = stations_within_radius(stations, centre, r)
     Y = stations.name()
     A = len(X)
