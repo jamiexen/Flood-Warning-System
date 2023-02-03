@@ -14,10 +14,9 @@ def test_station_names():
     """Test all the stations are in the list"""
     station_list = build_station_list()
     p = (52.2053, 0.1218)
-    X = stations_by_distance(station_list, p)
+    X = stations_by_distance(station_list, p)[:][0]
     Z = [station.name for station in station_list]
     Z = sorted_by_key(Z, 0)
-    X = X[:][0]
     print(X)
     X = sorted_by_key(X, 0)
     for station, i in Z, len(Z):
@@ -38,9 +37,11 @@ def test_names():
     centre = (52.2053, 0.1218)
     r = 10.0
     X = stations_within_radius(stations, centre, r)
-    Y = stations.name()
+    names = ()
+    for station in stations:
+      names.append(station.name)
     A = len(X)
-    assert X.count(Y) == A
+    assert X.count(names) == A
 
 
 #def test_range():
