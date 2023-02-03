@@ -18,6 +18,7 @@ def test_station_names():
     Z = [station.name for station in station_list]
     Z = sorted_by_key(Z, 0)
     X = X[:][0]
+    print(X)
     X = sorted_by_key(X, 0)
     for station, i in Z, len(Z):
         assert station in X[i]
