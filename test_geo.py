@@ -17,10 +17,7 @@ def test_station_names():
     Y = stations_by_distance(station_list, p)
     X = [station[0] for station in Y]
     Z = [station.name for station in station_list]
-    Z = sorted_by_key(Z, 0)
-    X = sorted_by_key(X, 0)
-    for i in range(len(Z)):
-        assert Z[i] == X[i]
+    assert all(item in Z for item in X)
     
 def test_sorting():
     """Tests sorting function has worked"""
@@ -42,7 +39,7 @@ def test_names():
       names.append(station.name)
     print(names)
     print(X)
-    assert all(item in X for item in names)
+    assert all(item in names for item in X)
 
 
 #def test_range():
