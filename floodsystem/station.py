@@ -40,6 +40,7 @@ class MonitoringStation:
         return d
 
     def typical_range_consistent(self):
+        """Checks for valid typical range data"""
         if self.typical_range is None:
             return False
         if self.typical_range[0] > self.typical_range[1]:
@@ -47,6 +48,8 @@ class MonitoringStation:
         return True
 
 def inconsistent_typical_range_stations(stations):
+    """Returns a list of typical range data
+    \n Param stations: List of stations to check for consistency"""
     inconsistent_stations = []
     for station in stations:
         if not station.typical_range_consistent():
