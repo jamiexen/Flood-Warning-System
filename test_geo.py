@@ -51,7 +51,7 @@ def test_stations_by_river():
     """Tests that each station is mapped to by the correct river"""
     station_list = build_station_list()
     dict = stations_by_river(station_list)
-    assert all(station.name in dict[station.river] for station in station_list)
+    assert all(station in dict[station.river] for station in station_list)
 
 
 #def test_range():
