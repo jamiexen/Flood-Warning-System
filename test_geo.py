@@ -41,6 +41,18 @@ def test_names():
     print(X)
     assert all(item in names for item in X)
 
+def test_rivers():
+    """Tests that all rivers are in the set"""
+    station_list = build_station_list()
+    rivers = rivers_with_station(station_list)
+    assert all(station.river in rivers for station in station_list)
+
+def test_stations_by_river():
+    """Tests that each station is mapped to by the correct river"""
+    station_list = build_station_list()
+    dict = stations_by_river(station_list)
+    assert all(station.name in dict[station.river] for station in station_list)
+
 
 #def test_range():
 #    """tests that distances are between 0km and 10km"""
