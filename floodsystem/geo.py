@@ -13,6 +13,9 @@ from floodsystem.stationdata import build_station_list
 import floodsystem.utils as utils
 
 def stations_by_distance(stations, p):
+  """Returns stations ordered by distance from coordinate p as a list of tuples (station, distance)
+  \n Param stations: list of station objects
+  \n Param p: coordinate as a tuple of floats"""
   distances = []
   stations = build_station_list()
   for station in stations:
@@ -21,6 +24,10 @@ def stations_by_distance(stations, p):
   return distances
     
 def stations_within_radius(stations, centre, r):
+  """Returns a list of all stations within radius r of a coordinate centre
+  \n Param stations: list of station objects
+  \n Param centre: coordinate
+  \n Param r: radius"""
   Y = []
   X = stations_by_distance(stations, centre)
   for i in range(len(X)):
@@ -31,7 +38,7 @@ def stations_within_radius(stations, centre, r):
 
 def rivers_with_station(stations):
   """Returns a set of names of all rivers with a monitoring station
-  \n:Param stations: list of station objects"""
+  \n Param stations: list of station objects"""
   rivers = set()
   for station in stations:
     rivers.add(station.river)
@@ -50,7 +57,7 @@ def stations_by_river(stations):
   return rivers_to_stations
 
 def rivers_by_station_number(stations, N):
-  """Returns the N rivers with the greatest number of monitoring stations in a list of tuples (river name, number of stations)
+  """Returns the N rivers with the greatest number of monitoring stations as a list of tuples (river name, number of stations)
   \n Param stations: list of station objects
   \n Param N: number of station objects to return"""
   dict = stations_by_river(stations)
