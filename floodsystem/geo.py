@@ -10,6 +10,7 @@ geographical data.
 from haversine import haversine
 from .utils import sorted_by_key
 from floodsystem.stationdata import build_station_list
+import floodsystem.utils as utils
 
 def stations_by_distance(stations, p):
   distances = []
@@ -47,3 +48,15 @@ def stations_by_river(stations):
       rivers_to_stations[station.river] = []
       rivers_to_stations[station.river].append(station)
   return rivers_to_stations
+
+def rivers_by_station_number(stations, N):
+  """Returns the N rivers with the greatest number of monitoring stations in a list of tuples (river name, number of stations)
+  \n Param stations: list of station objects
+  \n Param N: number of station objects to return"""
+  dict = stations_by_river(stations)
+  keys = dict.keys()
+  river_number_list = []
+  for key in keys:
+    river_number_list.append(tuple([key, len(dict[key])]))
+  river_number_list = utils.sorted_by_key(river_number_list, 1, True)
+  return river_number_list[:N]
