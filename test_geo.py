@@ -53,6 +53,12 @@ def test_stations_by_river():
     dict = stations_by_river(station_list)
     assert all(station in dict[station.river] for station in station_list)
 
+def test_rivers_by_station_number():
+    """Tests that the output has strictly descending numbers of stations"""
+    station_list = build_station_list()
+    river_number_list = rivers_by_station_number(station_list, len(station_list))
+    for i in range(len(river_number_list)-1):
+        assert river_number_list[i][1] >= river_number_list[i+1][1]
 
 #def test_range():
 #    """tests that distances are between 0km and 10km"""
