@@ -1,0 +1,10 @@
+"""Test for plot function"""
+from floodsystem import plot as plot
+
+def test_plot_water_levels(self):
+    """Tests is function throws appropriate error when incorrect input is passed"""
+    self.assertRaises(TypeError, plot.plot_water_levels, "Not a station object", 0.364, [0,1,2,3])
+
+def test_plot_water_levels(self):
+    """Tests is function throws appropriate error when incorrect input is passed"""
+    self.assertRaises(TypeError, plot.plot_water_levels, "Not a station object", 0.364, [0,1,2,3], 4)

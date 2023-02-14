@@ -9,6 +9,12 @@ def plot_water_levels(station, dates, levels):
     \n Param stations: station data has been given for
     \n Param dates: list of dates to plot
     \n Param levels: list of water levels to plot"""
+    if type(station) != object:
+        raise TypeError("Inappropriate station input")
+    if type(dates) != list:
+        raise TypeError("Inappropriate date input")
+    if type(levels) != list:
+        raise TypeError("Innapropriate levels input")
     plt.plot(dates,levels, label = "Water level")
     plt.xlabel('date')
     plt.ylabel('water level (m)')
@@ -28,6 +34,14 @@ def plot_water_level_with_fit(station, dates, levels, p):
     \n Param dates: list of dates to plot
     \n Param levels: list of water levels to plot
     \n Param p: degree of best fit polynomial"""
+    if type(station) != object:
+        raise TypeError("Inappropriate station input")
+    if type(dates) != list:
+        raise TypeError("Inappropriate date input")
+    if type(levels) != list:
+        raise TypeError("Innapropriate levels input")
+    if type(p) != int:
+        raise TypeError("Innapropriate p input")
     poly, shift = analysis.polyfit(dates, levels, p)
     plt.plot(dates, levels, label = "Water level")
     times = matplotlib.dates.date2num(dates)
