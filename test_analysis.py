@@ -1,6 +1,6 @@
 """Test for plot function"""
 from floodsystem import analysis as analysis
-import datetime
+from datetime import datetime as datetime
 import pytest
 
 def test_polyfit():
