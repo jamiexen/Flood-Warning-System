@@ -47,6 +47,16 @@ class MonitoringStation:
             return False
         return True
 
+
+    def relative_water_level(self):
+        """returns a factor showing the water level relative to usual"""
+        if typical_range_consistent(self) == True:
+            stations = build_station_list()
+            print(stations.self)
+            return True
+        else:
+            return None
+
 def inconsistent_typical_range_stations(stations):
     """Returns a list of typical range data
     \n Param stations: List of stations to check for consistency"""
