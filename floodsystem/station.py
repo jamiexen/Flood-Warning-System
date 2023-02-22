@@ -49,13 +49,18 @@ class MonitoringStation:
 
 
     def relative_water_level(self):
-        """returns a factor showing the water level relative to usual"""
-        if typical_range_consistent(self) == True:
-            stations = build_station_list()
-            print(stations.self)
-            return True
-        else:
-            return None
+            """returns a factor showing the water level relative to usual"""
+            if ((self.latest_level == None)
+                or (not self.typical_range_consistent())           
+            ):
+                return None
+
+#            update_water_levels(self)
+            last = self.latest_level
+            gap = self.typical_range[1] - self.typical_range[0]
+            adjusted = last - self.typical_range[0]
+            factor = adjusted / gap
+            return factor
 
 def inconsistent_typical_range_stations(stations):
     """Returns a list of typical range data
@@ -65,3 +70,5 @@ def inconsistent_typical_range_stations(stations):
         if not station.typical_range_consistent():
             inconsistent_stations.append(station)
     return inconsistent_stations
+
+
