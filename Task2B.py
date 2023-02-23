@@ -1,12 +1,13 @@
-from floodsystem.station import MonitoringStation, inconsistent_typical_range_stations
+from floodsystem.station import MonitoringStation
 from floodsystem.stationdata import build_station_list, update_water_levels
-from floodsystem.geo import stations_by_distance
+from floodsystem.flood import stations_level_over_threshold
 
-
-stations = build_station_list()
-update_water_levels(stations)
-for station in stations[:1]:
-  print(station.name)
-  print(station.relative_water_level())
-
-
+def run():
+  tol = 0.8
+  stations = build_station_list()
+  update_water_levels(stations)
+  print(*stations_level_over_threshold(stations, tol), sep = "\n")
+  
+if __name__ == "__main__":
+    print("*** Task 2B: CUED Part IA Flood Warning System ***")
+    run()
